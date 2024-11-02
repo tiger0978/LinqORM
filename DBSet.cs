@@ -47,10 +47,7 @@ namespace LinqORM
 
         public IEnumerable<TResult> Select<TResult>(Expression<Func<T, TResult>> selectExpression)
         {
-            Type t = typeof(TResult);
             var func = selectExpression.Compile(); //expression 解開形成 Func<T,TResult>
-
-
             foreach (T item in this)
             {
                 var result = func.Invoke(item); //每筆呼叫 func 傳回 TResult

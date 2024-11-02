@@ -53,28 +53,28 @@ namespace LinqORM
             }
             return node;
         }
-        //protected override Expression VisitMethodCall(MethodCallExpression node)
-        //{
-        //    switch (node.Method.Name)
-        //    {
-        //        case "Parse":
-        //            if (node.Method.ReturnType.Name == "Guid")
-        //            {
-        //                var data = node.Arguments[0] as ConstantExpression;
-        //                var result = Guid.Parse(data.Value.ToString());
-        //                sqlCommend.Append(result);
-        //            }
-        //            break;
-        //        case "Contains":
-        //            var arg = node.Arguments[0] as ConstantExpression;
-        //            var arg_value = arg.Value.ToString();
-        //            var memberExpression = node.Object as MemberExpression;
-        //            var fieldName = memberExpression.Member.Name;
-        //            sqlCommend.Append($"{fieldName} like '%{arg_value}%'");
-        //            break;
-        //    }
-        //    return node;
-        //}
+        protected override Expression VisitMethodCall(MethodCallExpression node)
+        {
+            switch (node.Method.Name)
+            {
+                case "Parse":
+                    if (node.Method.ReturnType.Name == "Guid")
+                    {
+                        var data = node.Arguments[0] as ConstantExpression;
+                        //var result = Guid.Parse(data.Value.ToString());
+                        sqlCommend.Add(data.Value.ToString());
+                    }
+                    break;
+                case "Contains":
+                    var arg = node.Arguments[0] as ConstantExpression;
+                    var arg_value = arg.Value.ToString();
+                    var memberExpression = node.Object as MemberExpression;
+                    var fieldName = memberExpression.Member.Name;
+                    sqlCommend.Add($"{fieldName} like '%{arg_value}%'");
+                    break;
+            }
+            return node;
+        }
 
 
         private void ConvertExpressionNodeType(ExpressionType expressionType)

@@ -15,7 +15,6 @@ namespace LinqORM
         public static List<T> ToList<T>(this IEnumerable<T> source)  
         {
             List<T> results = new List<T>();
-
             //IEnumerator<T> enumerator = source.GetEnumerator();
             //while (enumerator.MoveNext())
             //{

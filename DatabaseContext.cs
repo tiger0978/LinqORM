@@ -23,13 +23,6 @@ namespace LinqORM
             Employee = new DBSet<Employee>(conn);
         }
 
-        
-        
-
-
-
-
-
         public List<T> QueryData<T>(string sqlcommend) where T : new()
         {
             var cmd = new SqlCommand(sqlcommend, conn);
@@ -168,66 +161,7 @@ namespace LinqORM
             //    }
             //}
         }
-        //public void ConvertExpressionNodeType(StringBuilder sqlCommend, ExpressionType expressionType)
-        //{
 
-        //    switch (expressionType)
-        //    {
-        //        case ExpressionType.AndAlso:
-        //            sqlCommend.Append(" and ");
-        //            break;
-        //        case ExpressionType.OrElse:
-        //            sqlCommend.Append(" or (");
-        //            break;
-        //        case ExpressionType.Equal:
-        //            sqlCommend.Append(" = ");
-        //            break;
-        //        case ExpressionType.GreaterThan:
-        //            sqlCommend.Append(" > ");
-        //            break;
-        //        case ExpressionType.GreaterThanOrEqual:
-        //            sqlCommend.Append(" >= ");
-        //            break;
-        //        case ExpressionType.LessThan:
-        //            sqlCommend.Append(" < ");
-        //            break;
-        //        case ExpressionType.LessThanOrEqual:
-        //            sqlCommend.Append(" <= ");
-        //            break;
-        //    }
-        //}
-
-        //public List<dynamic> QueryData(string sqlcommend)
-        //{
-        //    List<dynamic> datas = new List<dynamic>(); //compiler 延後執行
-        //    var cmd = new SqlCommand(sqlcommend, conn);
-        //    SqlDataReader reader = cmd.ExecuteReader();
-        //    while (reader.Read())
-        //    {
-        //        var data = new ExpandoObject() as IDictionary<string, object>;
-        //        for (int i = 0; i < reader.FieldCount; i++)
-        //        {
-        //            data.Add(reader.GetName(i), reader[i]);
-        //        }
-        //        datas.Add(data);
-        //    }
-        //    reader.Close();
-        //    return datas;
-        //}
-
-        //public int AddData(object data)
-        //{
-        //    string tableName = data.GetType().Name;
-        //    var props = data.GetType().GetProperties();
-        //    string[] columns = props.Select(x => x.Name).ToArray();
-        //    string[] values = props.Select(x => "\'" + x.GetValue(data).ToString() + "\'").ToArray();
-        //    string colume_str = String.Join(",", columns);
-        //    string value_str = String.Join(",", values);
-        //    string sqlCommend = $"Insert into {tableName} ({colume_str}) values ({value_str})";
-        //    var cmd = new SqlCommand(sqlCommend, conn);
-        //    int count = cmd.ExecuteNonQuery();
-        //    return count;
-        //}
         public int DeleteData(object data)
         {
             string tableName = data.GetType().Name;
